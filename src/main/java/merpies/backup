@@ -1,0 +1,44 @@
+       Tjockhuvud A = new Tjockhuvud();
+               A.setName("Sogget");
+               A.setJobb("inget vettigt");
+               System.out.println(A);
+               A.arm(Weapon.CLUB);
+               Tjockhuvud B = new Tjockhuvud();
+               B.setName("Max");
+               B.setJobb("Supporttekniker");
+               B.arm(Weapon.CHAINSAW);
+               Tjockhuvud C = new Tjockhuvud();
+               C.setName("Martin");
+               C.setJobb(" att vara Död.....");
+               C.arm(Weapon.SLAP);
+               Tjockhuvud D = new Tjockhuvud();
+               D.setName("Puff");
+               D.setJobb("Kock");
+               D.arm(Weapon.AWP);
+               System.out.println(C);
+               A.damage(B);
+               B.damage(A);
+               C.damage(B);
+               D.damage(A);
+               System.out.println(A);
+               System.out.println(B);
+               System.out.println(C);
+               System.out.println(D);
+               while(D.getHp()>0){
+                   A.damage(D);
+               }
+               System.out.println(D);
+
+               }
+               System.out.println(puff);
+               System.out.println(max);
+
+        Idiot puff = new Tjockhuvud();
+        puff.setName("Puff");
+        while(puff.getHp()>0){
+            B.damage(puff);
+        }
+        Idiot max = new Tjockhuvud();
+        max.setName("Max");
+        while(max.getHp()>0){
+            C.damage(max);
