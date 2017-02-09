@@ -67,22 +67,18 @@ public class KingOfTheHill {
                 randomNum2 = random(0, tjockhuvon.size());
             }
             Tjockhuvud B = tjockhuvon.get(randomNum2);
-            if(random(0,1)>-1){
-                for(Weapon weapon:drop){
-                    if(weapon.getPower()>B.getWeapon().getPower()){
-                        B.arm(weapon);
-                        drop.remove(weapon);
-                        break;
-                    }
+            for (Weapon weapon : drop) {
+                if (weapon.getPower() > B.getWeapon().getPower()) {
+                    B.arm(weapon);
+                    drop.remove(weapon);
+                    break;
                 }
             }
             A.damage(B);
             if (B.getHp() < 1) {
                 System.out.println(B);
-                if(random(0, 3)>-1){
-                    System.out.println("Han tappade sin " + B.getWeapon());
-                    drop.add(B.getWeapon());
-                }
+                System.out.println("Han tappade sin " + B.getWeapon());
+                drop.add(B.getWeapon());
                 tjockhuvon.remove(B);
             }
         }
@@ -90,7 +86,7 @@ public class KingOfTheHill {
         System.out.println(tjockhuvon.get(0));
     }
 
-    public int random(int min, int max){
+    public int random(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max);
 
     }
