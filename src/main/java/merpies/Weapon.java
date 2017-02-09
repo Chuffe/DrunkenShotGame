@@ -3,11 +3,16 @@ package merpies;
 /**
  * Created by Chuffe' on 2017-02-07.
  */
+
+/**
+ * This class is fully built to let us use Weapons as well as setting the damage för the weapons.
+ */
+
 public class Weapon {
     int power;
     String name;
 
-    public Weapon(int power, String name){
+    public Weapon(int power, String name) {
         this.power = power;
         this.name = name;
     }
@@ -28,7 +33,7 @@ public class Weapon {
         this.name = name;
     }
 
-    public String toString(){
+    public String toString() {
         return name;
     }
 }

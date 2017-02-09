@@ -3,6 +3,11 @@ package merpies;
 /**
  * Created by Chuffe' on 2017-02-07.
  */
+
+/**
+ * Main method
+ */
+
 public class merpiestest {
     public static void main(String[] args) {
         Tjockhuvud A = new Tjockhuvud();
