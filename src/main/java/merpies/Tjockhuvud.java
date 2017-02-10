@@ -7,6 +7,7 @@ public class Tjockhuvud implements Idiot {
     String name;
     String jobb;
     Weapon weapon;
+    int armour;
     int hp;
 
 
@@ -27,6 +28,17 @@ public class Tjockhuvud implements Idiot {
         hp = 100;
     }
 
+    public int getArmour() { return armour; }
+
+    public void setArmour(int armor){ this.armour = armor; }
+
+    public void addArmour(int armor){
+        this.armour += armor;
+        if (this.armour >100){
+            this.armour = 100;
+        }
+    }
+
     /**
      * Allows us to give players random weapons. The weapons are decided in another class in this build.
      */
@@ -43,7 +55,12 @@ public class Tjockhuvud implements Idiot {
 
     public void damage(Idiot idiot) {
         System.out.println(name + " attacks " + idiot.getName() + " with a " + weapon);
-        idiot.setHp(idiot.getHp() - weapon.getPower());
+        idiot.setArmour(idiot.getArmour() - weapon.getPower());
+        if(idiot.getArmour() < 0) {
+            idiot.setHp(idiot.getHp() + idiot.getArmour());
+            idiot.setArmour(0);
+        }
+
     }
 
 
@@ -80,7 +97,7 @@ public class Tjockhuvud implements Idiot {
 
     public String toString() {
         if (hp > 0) {
-            return name + " är ett fyllo som jobbar som " + jobb + " och han har " + hp + "HP, och är beväpnad med " + weapon;
+            return name + " är ett fyllo som jobbar som " + jobb + " och han har " + hp + "HP och " + armour + " armour, och är beväpnad med " + weapon;
         } else {
             return name + " är ett dött fyllo!";
         }

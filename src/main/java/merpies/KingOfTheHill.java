@@ -62,8 +62,13 @@ public class KingOfTheHill {
         while (tjockhuvon.size() > 1) {
             int randomNum = random(0, tjockhuvon.size());
             Tjockhuvud A = tjockhuvon.get(randomNum);
-            if (random(0, 10)>8){
+            if (random(0, 10)>7){
                 A.fis();
+                continue;
+            }
+            if (random(0, 10)>8){
+                A.addArmour(75);
+                System.out.println(A.getName() + " hittade lite läderlappar!");
                 continue;
             }
             int randomNum2 = randomNum;

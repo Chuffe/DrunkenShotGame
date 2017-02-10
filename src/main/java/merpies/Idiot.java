@@ -13,4 +13,8 @@ public interface Idiot {
     String getName();
 
     void setHp(int Hp);
+
+    int getArmour();
+
+    void setArmour(int armour);
 }
