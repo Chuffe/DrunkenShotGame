@@ -34,6 +34,6 @@ public class Weapon {
     }
 
     public String toString() {
-        return name;
+        return "<b>"+name+"</b>";
     }
 }

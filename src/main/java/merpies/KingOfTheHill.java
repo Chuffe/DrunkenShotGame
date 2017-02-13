@@ -42,7 +42,7 @@ public class KingOfTheHill {
     /**
      * adds the random element for the weapons to the players
      */
-    public void arm() {
+    public String arm() {
         Tjockhuvud A = new Tjockhuvud();
         A.setName("Sogget");
         tjockhuvon.clear();
@@ -68,11 +68,14 @@ public class KingOfTheHill {
         tjockhuvon.add(D);
         tjockhuvon.add(E);
         tjockhuvon.add(F);
+        StringBuilder SBB = new StringBuilder();
         for (Tjockhuvud Blargh : tjockhuvon) {
             int randomNum = ThreadLocalRandom.current().nextInt(0, weapons.size());
             Weapon weapon = weapons.get(randomNum);
-            Blargh.arm(weapon);
+            SBB.append(Blargh.arm(weapon));
+            SBB.append("<br>");
         }
+        return SBB.toString();
     }
 
     public void join(Tjockhuvud tjockhuvud) {
@@ -84,20 +87,21 @@ public class KingOfTheHill {
      * Makes sure every player brawls until 1 is left surviving.
      */
     public String brawl() {
-        arm();
         StringBuilder SB = new StringBuilder();
+        SB.append(arm());
+        SB.append("<br>");
         while (tjockhuvon.size() > 1) {
             int randomNum = random(0, tjockhuvon.size());
             Tjockhuvud A = tjockhuvon.get(randomNum);
             if (random(0, 10) > 7) {
                 SB.append(A.fis());
-                SB.append("\n");
+                SB.append("<br>");
                 continue;
             }
             if (random(0, 10) > 8) {
                 A.addArmour(75);
                 SB.append(A.getName()).append(" hittade lite läderlappar!");
-                SB.append("\n");
+                SB.append("<br>");
                 continue;
             }
             int randomNum2 = randomNum;
@@ -106,27 +110,29 @@ public class KingOfTheHill {
             }
 
             if (A.getWeapon().getPower() < getBestWeapon().getPower()) {
-                A.arm(getBestWeapon());
+                SB.append(A.arm(getBestWeapon()));
+                SB.append("<br>");
                 drop.remove(getBestWeapon());
                 continue;
             }
 
             Tjockhuvud B = tjockhuvon.get(randomNum2);
 
-            A.damage(B);
+            SB.append(A.damage(B));
+            SB.append("<br>");
             if (B.getHp() < 1) {
                 SB.append(B);
-                SB.append("\n");
+                SB.append("<br>");
                 SB.append("Han tappade sin ").append(B.getWeapon());
-                SB.append("\n");
+                SB.append("<br>");
                 drop.add(B.getWeapon());
                 tjockhuvon.remove(B);
             }
         }
-        SB.append("And the winner is... ");
-        SB.append("\n");
+        SB.append("<h2>And the winner is... </h2>");
+        SB.append("<br>");
         SB.append(tjockhuvon.get(0));
-        SB.append("\n");
+        SB.append("<br>");
         return SB.toString();
     }
 

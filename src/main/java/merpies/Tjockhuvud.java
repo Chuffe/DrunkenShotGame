@@ -48,23 +48,22 @@ public class Tjockhuvud implements Idiot {
      */
 
 
-    public void arm(Weapon weapon) {
+    public String arm(Weapon weapon) {
         this.weapon = weapon;
-        System.out.println(name + " found a " + weapon.getName());
+        return (name + " found a " + weapon);
     }
 
     /**
      * This allows us let the players attack each other and detailing out that they attack the other person.
      */
 
-    public void damage(Idiot idiot) {
-        System.out.println(name + " attacks " + idiot.getName() + " with a " + weapon);
+    public String damage(Idiot idiot) {
         idiot.setArmour(idiot.getArmour() - weapon.getPower());
         if (idiot.getArmour() < 0) {
             idiot.setHp(idiot.getHp() + idiot.getArmour());
             idiot.setArmour(0);
         }
-
+        return (name + " attacks " + idiot.getName() + " with a " + weapon);
     }
 
 
