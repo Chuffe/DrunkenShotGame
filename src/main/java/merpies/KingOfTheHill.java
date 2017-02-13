@@ -43,10 +43,35 @@ public class KingOfTheHill {
      * adds the random element for the weapons to the players
      */
     public void arm() {
-        for (Tjockhuvud A : tjockhuvon) {
+        Tjockhuvud A = new Tjockhuvud();
+        A.setName("Sogget");
+        tjockhuvon.clear();
+        A.setJobb("första rövtorkare");
+        Tjockhuvud B = new Tjockhuvud();
+        B.setName("Max");
+        B.setJobb("Supporttekniker");
+        Tjockhuvud C = new Tjockhuvud();
+        C.setName("Martin");
+        C.setJobb("att bli jagad av en failad golddigger.");
+        Tjockhuvud D = new Tjockhuvud();
+        D.setName("Puff");
+        D.setJobb("att tillaga soppor.");
+        Tjockhuvud E = new Tjockhuvud();
+        E.setName("Chuffe");
+        E.setJobb("Apprentice programmerare");
+        Tjockhuvud F = new Tjockhuvud();
+        F.setName("Alex");
+        F.setJobb("pro programmerare");
+        tjockhuvon.add(A);
+        tjockhuvon.add(B);
+        tjockhuvon.add(C);
+        tjockhuvon.add(D);
+        tjockhuvon.add(E);
+        tjockhuvon.add(F);
+        for (Tjockhuvud Blargh : tjockhuvon) {
             int randomNum = ThreadLocalRandom.current().nextInt(0, weapons.size());
             Weapon weapon = weapons.get(randomNum);
-            A.arm(weapon);
+            Blargh.arm(weapon);
         }
     }
 
@@ -58,17 +83,21 @@ public class KingOfTheHill {
      * formula for the random attack pattern as well as random drop from dead enemies.
      * Makes sure every player brawls until 1 is left surviving.
      */
-    public void brawl() {
+    public String brawl() {
+        arm();
+        StringBuilder SB = new StringBuilder();
         while (tjockhuvon.size() > 1) {
             int randomNum = random(0, tjockhuvon.size());
             Tjockhuvud A = tjockhuvon.get(randomNum);
             if (random(0, 10) > 7) {
-                A.fis();
+                SB.append(A.fis());
+                SB.append("\n");
                 continue;
             }
             if (random(0, 10) > 8) {
                 A.addArmour(75);
-                System.out.println(A.getName() + " hittade lite läderlappar!");
+                SB.append(A.getName()).append(" hittade lite läderlappar!");
+                SB.append("\n");
                 continue;
             }
             int randomNum2 = randomNum;
@@ -86,14 +115,19 @@ public class KingOfTheHill {
 
             A.damage(B);
             if (B.getHp() < 1) {
-                System.out.println(B);
-                System.out.println("Han tappade sin " + B.getWeapon());
+                SB.append(B);
+                SB.append("\n");
+                SB.append("Han tappade sin ").append(B.getWeapon());
+                SB.append("\n");
                 drop.add(B.getWeapon());
                 tjockhuvon.remove(B);
             }
         }
-        System.out.println("And the winner is... ");
-        System.out.println(tjockhuvon.get(0));
+        SB.append("And the winner is... ");
+        SB.append("\n");
+        SB.append(tjockhuvon.get(0));
+        SB.append("\n");
+        return SB.toString();
     }
 
     public Weapon getBestWeapon() {

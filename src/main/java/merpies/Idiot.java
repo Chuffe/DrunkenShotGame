@@ -4,7 +4,7 @@ package merpies;
  * Created by Chuffe' on 2017-02-07.
  */
 public interface Idiot {
-    void fis();
+    String fis();
 
     int getHp();
 

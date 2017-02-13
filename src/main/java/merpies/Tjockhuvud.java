@@ -107,7 +107,7 @@ public class Tjockhuvud implements Idiot {
         }
     }
 
-    public void fis() {
-        System.out.println(name + " blev rädd och sket ner sig!");
+    public String fis() {
+        return(name + " blev rädd och sket ner sig!");
     }
 }
