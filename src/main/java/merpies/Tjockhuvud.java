@@ -28,13 +28,17 @@ public class Tjockhuvud implements Idiot {
         hp = 100;
     }
 
-    public int getArmour() { return armour; }
+    public int getArmour() {
+        return armour;
+    }
 
-    public void setArmour(int armor){ this.armour = armor; }
+    public void setArmour(int armor) {
+        this.armour = armor;
+    }
 
-    public void addArmour(int armor){
+    public void addArmour(int armor) {
         this.armour += armor;
-        if (this.armour >100){
+        if (this.armour > 100) {
             this.armour = 100;
         }
     }
@@ -56,7 +60,7 @@ public class Tjockhuvud implements Idiot {
     public void damage(Idiot idiot) {
         System.out.println(name + " attacks " + idiot.getName() + " with a " + weapon);
         idiot.setArmour(idiot.getArmour() - weapon.getPower());
-        if(idiot.getArmour() < 0) {
+        if (idiot.getArmour() < 0) {
             idiot.setHp(idiot.getHp() + idiot.getArmour());
             idiot.setArmour(0);
         }

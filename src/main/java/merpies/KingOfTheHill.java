@@ -26,14 +26,14 @@ public class KingOfTheHill {
         drop = new ArrayList<>();
         weapons.add(new Weapon(3, "nada"));
         weapons.add(new Weapon(10, "halvrutten lax.."));
-        weapons.add(new Weapon(25, "klubba."));
-        weapons.add(new Weapon(35, "pistol."));
+        weapons.add(new Weapon(24, "klubba."));
+        weapons.add(new Weapon(31, "pistol."));
         weapons.add(new Weapon(42, "hjärnskrynklare(?)!"));
         weapons.add(new Weapon(50, "motorsåg!"));
         weapons.add(new Weapon(62, "rabieshund!"));
-        weapons.add(new Weapon(67, "Snelhest, AKA Frukt"));
-        weapons.add(new Weapon(70, "AK-47!!"));
-        weapons.add(new Weapon(87, "Galen häst!!!"));
+        weapons.add(new Weapon(66, "Snelhest, AKA Frukt"));
+        weapons.add(new Weapon(73, "AK-47!!"));
+        weapons.add(new Weapon(84, "Galen häst!!!"));
         weapons.add(new Weapon(99, "AWP!"));
         weapons.add(new Weapon(100, "Martin granat...!!!!!"));
 
@@ -62,11 +62,11 @@ public class KingOfTheHill {
         while (tjockhuvon.size() > 1) {
             int randomNum = random(0, tjockhuvon.size());
             Tjockhuvud A = tjockhuvon.get(randomNum);
-            if (random(0, 10)>7){
+            if (random(0, 10) > 7) {
                 A.fis();
                 continue;
             }
-            if (random(0, 10)>8){
+            if (random(0, 10) > 8) {
                 A.addArmour(75);
                 System.out.println(A.getName() + " hittade lite läderlappar!");
                 continue;
@@ -75,14 +75,15 @@ public class KingOfTheHill {
             while (randomNum2 == randomNum) {
                 randomNum2 = random(0, tjockhuvon.size());
             }
-            Tjockhuvud B = tjockhuvon.get(randomNum2);
-            for (Weapon weapon : drop) {
-                if (weapon.getPower() > B.getWeapon().getPower()) {
-                    B.arm(weapon);
-                    drop.remove(weapon);
-                    break;
-                }
+
+            if (A.getWeapon().getPower() < getBestWeapon().getPower()) {
+                A.arm(getBestWeapon());
+                drop.remove(getBestWeapon());
+                continue;
             }
+
+            Tjockhuvud B = tjockhuvon.get(randomNum2);
+
             A.damage(B);
             if (B.getHp() < 1) {
                 System.out.println(B);
@@ -93,6 +94,16 @@ public class KingOfTheHill {
         }
         System.out.println("And the winner is... ");
         System.out.println(tjockhuvon.get(0));
+    }
+
+    public Weapon getBestWeapon() {
+        Weapon Best = weapons.get(0);
+        for (Weapon weapon : drop) {
+            if (weapon.getPower() > Best.getPower()) {
+                Best = weapon;
+            }
+        }
+        return Best;
     }
 
     public int random(int min, int max) {
